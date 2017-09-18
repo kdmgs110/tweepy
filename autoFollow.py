@@ -16,10 +16,10 @@ Procedure
 """
 
 # 各種キーをセット
-CONSUMER_KEY = 'psWut2vFh9e1dX0gCV5ICj5rk'
-CONSUMER_SECRET = '5MXkpqqEe00Kn5ue1Ie6esBpQa8ocNub7gBCSGXqc4ylNmiMFp'
-ACCESS_TOKEN = '718015800133586944-owT6LAObdpEesmHiWbsv80P3acRsmeI'
-ACCESS_SECRET = 'sIPWThSDgTB2pp8l3f5d1Na7w7KXkk6sjI4Dww1g0HwFj'
+CONSUMER_KEY = '5WiNRDJX83huEYYwvL29akUCr'
+CONSUMER_SECRET = 'BEpxsOpXqBuzchPNsnWaoPKhJQ87k3W7wc1d4E7jAwanvnplVD'
+ACCESS_TOKEN = '909614734743179265-Cx2PkIiwizhP9I0mDJeJ7XGj43iTVEb'
+ACCESS_SECRET = 'CTXx3tnCwTPDhKh2HwCY2N1AIi9DMVIQdrcSBZVWArP14'
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
@@ -33,6 +33,7 @@ api = tweepy.API(auth)
 q = "the-academic-times.com"  #検索するURL
 count = 50 # 検索数
 yourAccount = "never_be_a_pm"
+followCount = 0
 
 try:
     searchResults = api.search(q=q, count=count) #検索
@@ -58,8 +59,10 @@ try:
         try:
             api.create_friendship(screenId) #フォローする
             print("・フォローしました")
+            followCount = followCount + 1
         except:
             print("ID{}はすでにフォローしています。次の処理を開始します".format(screenId))
             continue;       
+    print("合計{}人フォローしました".format(followCount))
 except Exception as e:
     print(e)   
